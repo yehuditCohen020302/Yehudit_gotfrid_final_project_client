@@ -1,0 +1,39 @@
+.about-us {
+    margin: 20px 40px;
+    font-size: 20px;
+    font-family: monospace;
+    color: #006064;
+    text-align: center;
+}
+
+.carousel-inner {
+    width: 90% !important;
+    margin: auto;
+
+}
+
+.join {
+    text-align: center;
+    margin: 20px;
+    font-size: 24px;
+    color: #d06309;
+    font-family: inherit;
+}
+
+.contact-us {
+    width: 70%;
+    margin: 30px auto;
+   
+}
+
+.contact-lable {
+    color: #006064;
+    font-weight: 500;
+}
+
+.btn-contact {
+    margin: 20px 0;
+    background-color: #d65109 !important;
+    width: 126px;
+    font-weight: 500 !important;
+}

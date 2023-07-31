@@ -1,0 +1,8 @@
+.offcanvas-body{
+    padding: 0;
+    background-color: #f0f2f5;
+    border: 4px solid #ea7703;
+}
+.btn-add-user{
+    background-color: #ea7703 !important;
+}

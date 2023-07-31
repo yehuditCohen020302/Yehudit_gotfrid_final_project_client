@@ -1,0 +1,91 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.nav-link {
+  color: #00838F !important;
+}
+
+.nav-tabs {
+  --bs-nav-tabs-border-width: var(--bs-border-width);
+  --bs-nav-tabs-border-color: #7d8c8e !important;
+  --bs-nav-tabs-border-radius: var(--bs-border-radius);
+  --bs-nav-tabs-link-hover-border-color: #7d8c8e #7d8c8e var(--bs-border-color) !important;
+  --bs-nav-tabs-link-active-color: #7d8c8e !important;
+  --bs-nav-tabs-link-active-bg: var(--bs-body-bg);
+  --bs-nav-tabs-link-active-border-color: var(--bs-border-color) #7d8c8e var(--bs-body-bg) !important;
+  border-bottom: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color);
+}
+
+.active {
+  background-color: #fafafa !important;
+}
+
+.btn-logout {
+  background-color: #e7e7e7;
+  border: 1px solid gray;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #00838F;
+}
+
+.header-main {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 20px;
+  align-items: center;
+}
+
+.welcome-title {
+  color: #EF6C00;
+  font-weight: 500;
+}
+
+.btn-login {
+  color: #fcfcfc !important;
+  float: right;
+  margin-left: 50px;
+  background-color: #00838F;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+/*מכאן אני כתבתי: לא נגעתי בלמעלה*/

@@ -1,0 +1,21 @@
+.message-content {
+    width: 70%;
+    border: 1px solid gray;
+    margin: 0 20px 20px 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.div-time {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20px;
+    width: 70%;
+}
+
+.time-item {
+    display: flex;
+    align-items: center;
+    color: #00838F;
+    font-weight: 500;
+}

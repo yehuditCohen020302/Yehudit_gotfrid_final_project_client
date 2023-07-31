@@ -1,0 +1,18 @@
+.contact-manager {
+    background-color: #eff8ff;
+    margin: 20px;
+    padding: 20px;
+    width: 40%;
+    border: 1px solid orange;
+    border-radius: 10px;
+}
+
+.main-div-messages {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.remove-icon {
+    color: #d00404;
+    cursor: pointer;
+}
