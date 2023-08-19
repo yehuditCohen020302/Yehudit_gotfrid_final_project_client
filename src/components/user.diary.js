@@ -19,6 +19,10 @@ import img4 from '../images/food7.webp';
 import img5 from '../images/food8.webp';
 import img6 from '../images/food9.webp';
 import img7 from '../images/food10.webp';
+import img8 from '../images/food12.jpg';
+import img9 from '../images/food13.jpg';
+import img10 from '../images/food14.jpg';
+import img11 from '../images/food15.jpg';
 import Accordion from 'react-bootstrap/Accordion';
 
 function mapStateToProps(state) {
@@ -57,7 +61,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function DenseTable(
     await getDiaryByUser(currentUser?._id)
   }
   let a;
-  const imgArr = [img0, img1, img2, img3, img4, img5, img6, img7];
+  const imgArr = [img0, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11];
 
   const viewDiaryByUser = () => {
     return (
@@ -90,26 +94,34 @@ export default connect(mapStateToProps, mapDispatchToProps)(function DenseTable(
                     </Accordion>
 
                   </Card.Text>
-                  <h5>Sum :</h5>
-                  <div>
-                    Energy: {a = day?.meals?.reduce(function (prev, current) {
-                      return prev + +current.energy
-                    }, 0)}
-                    {' '}
-                    Ashlegan: {a = day?.meals?.reduce(function (prev, current) {
-                      return prev + +current.ashlegan
-                    }, 0)}
-                    {' '}
+                  <div className="lable">Sum :</div>
+                  <div className="all-params">
+                    <p className="p-t1"><p className="b-param"> Energy: </p>
+                      {a = day?.meals?.reduce(function (prev, current) {
+                        return prev + +current.energy
+                      }, 0)}
+                    </p>
+                    <p className="p-t1"><p className="b-param"> Potassium: </p>
+                      {a = day?.meals?.reduce(function (prev, current) {
+                        return prev + +current.ashlegan
+                      }, 0).toFixed(2) }
+                    </p>
 
-                    Natran: {a = day?.meals?.reduce(function (prev, current) {
-                      return prev + +current.natran
-                    }, 0)}
-                    {' '}
-
-                    Total Sugar: {a = day?.meals?.reduce(function (prev, current) {
-                      return prev + +current.total_sugars
-                    }, 0).toFixed(2)}
+                    <p className="p-t1"><p className="b-param"> Sodium: </p>
+                      {a = day?.meals?.reduce(function (prev, current) {
+                        return prev + +current.natran
+                      }, 0)}
+                    </p>
+                    <p className="p-t1"> <p className="b-param">Total Sugar: </p>
+                      {a = day?.meals?.reduce(function (prev, current) {
+                        return prev + +current.total_sugars
+                      }, 0).toFixed(2)}
+                    </p>
+                  </div >
+                  <div style={{ display: 'flex', justifyContent: 'center' }}>
+                
                   </div>
+              
                 </Card.Body>
               </Card>
             )}
@@ -135,10 +147,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(function DenseTable(
                     <Accordion.Item eventKey={index}>
                       <Accordion.Header>{item?.label}</Accordion.Header>
                       <Accordion.Body>
-                        Energy:   {item?.energy}<br />
-                        {item?.ashlegan}<br />
-                        {item?.natran}<br />
-                        {item?.total_sugars}
+                        <b>Energy:</b>   {item?.energy}<br />
+                        <b>Potassium: </b> {item?.ashlegan}<br />
+                        <b>Sodium: </b> {item?.natran}<br />
+                        <b> Total Sugar:</b> {item?.total_sugars}
                       </Accordion.Body>
                     </Accordion.Item>
                   )}
@@ -158,6 +170,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function DenseTable(
             <Button className='btn-opt' variant="primary" onClick={() => setShowAddFood(true)}>Add More Food</Button></div>}
 
         {viewDiaryByUser()}
+
 
         <AddFoodModal setShowAddFood={setShowAddFood} showAddFood={showAddFood} />
       </div>

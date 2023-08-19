@@ -42,7 +42,7 @@ export default function App() {
         className=""
       >
         <Tab eventKey="home" title="Home">
-          {defaultActivity === "login" ? <HomePage setDefaultActivity={setDefaultActivity} setKindOfUser={setKindOfUser} /> : <MainPage /> }
+          {defaultActivity === "login" ? <HomePage setDefaultActivity={setDefaultActivity} setKindOfUser={setKindOfUser} /> : <MainPage />}
         </Tab>
         {kindOfUser == 'manager' && <Tab eventKey="manager" title="Manager Page">
           <BasicTable />

@@ -43,8 +43,11 @@ export const getDiaryByUser = ({ dispatch, getState }) => next => action => {
 
 export const addNewFood = ({ dispatch, getState }) => next => action => {
     if (action.type === 'ADD_NEW_FOOD') {
+        debugger
+        const currentUser1 = JSON.parse(localStorage.getItem('user-details'))
+
         let foodToAdd ={
-            userId: currentUser?._id,
+            userId: currentUser1?._id,
             date: today,
             currentFood:action.payload
         } 

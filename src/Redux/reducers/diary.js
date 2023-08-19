@@ -13,6 +13,9 @@ const diaryReducer = {
     },
     setDiaryByUser(state, action) {
         state.diaryByCurrentUser = action.payload;
+    },
+    setIsDiary(state, action) {
+        state.isDiary = action.payload;
     }
 }
 

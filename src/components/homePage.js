@@ -22,6 +22,7 @@ export default connect(null, mapDispatchToProps)(function HomePage(props) {
     const [isLogin, setIsLogin] = useState(false);
 
     const loginUser = () => {
+        debugger
         const user = {
             email: email,
             password: password
