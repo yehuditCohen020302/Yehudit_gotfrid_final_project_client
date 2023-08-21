@@ -51,7 +51,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(function AddFoodModa
     }, [allFoods])
 
     const addNewFoodToDiary = async () => {
-        debugger
         await addNewFood(selectedFood).then(async()=>{
              setShowAddFood(false)
         await getDiaryByUser(currentUser?._id)

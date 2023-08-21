@@ -15,7 +15,6 @@ const NavTabs = () => {
         setValue(newValue);
     };
     const logoutUser = () => {
-        debugger
         localStorage.setItem('user-details', JSON.stringify(null));
         history('/')
     }

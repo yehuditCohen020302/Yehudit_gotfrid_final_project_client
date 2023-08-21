@@ -15,14 +15,13 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(null, mapDispatchToProps)(function HomePage(props) {
-    const { login, setDefaultActivity, setKindOfUser } = props;
+    const { login, setNavigateToPages, setKindOfUser } = props;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [isLogin, setIsLogin] = useState(false);
 
     const loginUser = () => {
-        debugger
         const user = {
             email: email,
             password: password
@@ -30,7 +29,7 @@ export default connect(null, mapDispatchToProps)(function HomePage(props) {
         if (email == 'manager@gmail.com' && password == "manager123") {
             localStorage.setItem('kind-of-user', JSON.stringify('manager'));
             setKindOfUser('manager')
-            setDefaultActivity("home")
+            setNavigateToPages("home")
         }
         else {
             login(user).then((res) => {
@@ -43,7 +42,7 @@ export default connect(null, mapDispatchToProps)(function HomePage(props) {
                 else {
                     localStorage.setItem('kind-of-user', JSON.stringify('simpleUser'));
                     setKindOfUser('simpleUser')
-                    setDefaultActivity("home")
+                    setNavigateToPages("home")
                 }
             })
         }
@@ -91,7 +90,7 @@ export default connect(null, mapDispatchToProps)(function HomePage(props) {
                 </div>
             </div>
             <div className="wellcome-container">
-                <h1 className="wellcome-title">Welcome to the Weight Watchers group</h1>
+                <div className="wellcome-title">Welcome to the Weight Watchers group</div>
             </div>
         </div>
     )

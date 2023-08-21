@@ -18,45 +18,63 @@ import { useEffect } from "react";
 export default function App() {
   const [kindOfUser, setKindOfUser] = useState(JSON.parse(localStorage.getItem('kind-of-user')));
   const currentUser = JSON.parse(localStorage.getItem('user-details'));
-  const [defaultActivity, setDefaultActivity] = useState('home');
-
-  useEffect(() => {
-    viewTabs()
-  }, [defaultActivity]);
+  const [navigateToPages, setNavigateToPages] = useState('home')
 
   const logoutUser = () => {
     localStorage.clear()
-    setDefaultActivity("home")
+    setNavigateToPages("home")
     setKindOfUser(JSON.parse(localStorage.getItem('kind-of-user')))
   }
 
   const loginUser = () => {
-    setDefaultActivity("login")
+    setNavigateToPages('login')
   }
 
   const viewTabs = () => {
     return (
-      <Tabs
-        defaultActiveKey={defaultActivity}
-        id="uncontrolled-tab-example"
-        className=""
-      >
-        <Tab eventKey="home" title="Home">
-          {defaultActivity === "login" ? <HomePage setDefaultActivity={setDefaultActivity} setKindOfUser={setKindOfUser} /> : <MainPage />}
-        </Tab>
-        {kindOfUser == 'manager' && <Tab eventKey="manager" title="Manager Page">
-          <BasicTable />
-        </Tab>}
-        {kindOfUser == 'manager' && <Tab eventKey="managerMessagse" title="Manager Messagse">
-          <ManagerMessagse />
-        </Tab>}
-        {kindOfUser == 'simpleUser' && <Tab eventKey="user" title="My Work">
-          <UserPage />
-        </Tab>}
-        {kindOfUser == 'simpleUser' && <Tab eventKey="user-messages" title="Messages From Manager">
-          <UserMessages />
-        </Tab>}
-      </Tabs>
+      <>
+        <div>
+          <div className="buttons-for-navigat row">
+            <div className={navigateToPages === 'home' ? "btn-nabigate-choosed col-2" : "btn-nabigate col-2"}
+              onClick={() => setNavigateToPages('home')}>
+              Home
+            </div>
+
+            {kindOfUser == 'manager' &&
+              <div className={navigateToPages === 'manager-page' ? "btn-nabigate-choosed col-2" : "btn-nabigate col-2"}
+                onClick={() => setNavigateToPages('manager-page')}>
+                Manager Page
+              </div>}
+
+            {kindOfUser == 'manager' &&
+              <div className={navigateToPages === 'manager-messages' ? "btn-nabigate-choosed col-2" : "btn-nabigate col-2"}
+                onClick={() => setNavigateToPages('manager-messages')}>
+                Manager Messages
+              </div>}
+
+            {kindOfUser == 'simpleUser' &&
+              <div className={navigateToPages === 'user' ? "btn-nabigate-choosed col-2" : "btn-nabigate col-2"}
+                onClick={() => setNavigateToPages('user')}>
+                My Work
+              </div>}
+
+            {kindOfUser == 'simpleUser' &&
+              <div className={navigateToPages === 'user-messages' ? "btn-nabigate-choosed col-2" : "btn-nabigate col-2"}
+                onClick={() => setNavigateToPages('user-messages')}>
+                Messages From Manager
+              </div>}
+
+            <div className={`btn-nabigate-choosed-1 ${kindOfUser === null ? 'col-10' : 'col-6'}`}></div>
+
+          </div>
+          {navigateToPages === "home" && <MainPage />}
+          {navigateToPages === "manager-page" && <BasicTable />}
+          {navigateToPages === "manager-messages" && <ManagerMessagse />}
+          {navigateToPages === "user" && <UserPage />}
+          {navigateToPages === "user-messages" && <UserMessages />}
+          {navigateToPages === "login" && <HomePage setNavigateToPages={setNavigateToPages} setKindOfUser={setKindOfUser} />}
+        </div>
+      </>
     )
   }
 

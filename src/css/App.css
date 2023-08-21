@@ -88,4 +88,42 @@
   font-weight: 500;
 }
 
+.btn-nabigate-choosed {
+  align-items: center;
+  display: flex;
+  text-align: center;
+  border: 1px solid gray;
+  border-bottom: none;
+  border-radius: 7px 7px 0 0;
+  justify-content: center;
+  color: #00838F;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.btn-nabigate:hover {
+  font-weight: 500;
+  color: #00838F;
+
+}
+
+.btn-nabigate-choosed-1 {
+  border-bottom: 1px solid gray;
+}
+
+.btn-nabigate {
+  align-items: center;
+  display: flex;
+  border-bottom: 1px solid gray;
+  text-align: center;
+  color: #00838F;
+  justify-content: center;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.buttons-for-navigat {
+  width: 100%;
+}
+
 /*מכאן אני כתבתי: לא נגעתי בלמעלה*/

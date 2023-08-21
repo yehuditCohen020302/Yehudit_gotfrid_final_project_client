@@ -47,7 +47,7 @@
 .all-params {
     display: flex;
     justify-content: space-around;
-        height: 33px;
+    height: 33px;
 }
 
 .b-param {
@@ -59,12 +59,10 @@
     display: flex;
     justify-content: space-around;
 }
-.icons-f{
-        text-align: center;
-            margin: 10px;
-            color: #558B2F;
-            font-size: 20px;
-}
-.all-diary-for-m{
-    display: flex;
+
+.icons-f {
+    text-align: center;
+    margin: 10px;
+    color: #558B2F;
+    font-size: 20px;
 }
