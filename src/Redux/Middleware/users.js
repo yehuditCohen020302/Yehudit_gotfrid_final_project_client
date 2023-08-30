@@ -26,6 +26,30 @@ export const createNewUser = ({ dispatch, getState }) => next => action => {
 }
 
 
+
+export const updateUser = ({ dispatch, getState }) => next => action => {
+    if (action.type === 'UPDATE_USER') {
+        let user = action.payload;
+        return fetch('http://localhost:8000/user/update', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
+    }
+    return next(action)
+}
+
+
 export const loginUser = ({ dispatch, getState }) => next => action => {
     if (action.type === 'LOGIN_USER') {
         let email = action.payload.email
@@ -55,6 +79,25 @@ export const getAllUsers = ({ dispatch, getState }) => next => action => {
             })
             .catch((err) => {
                 console.log(err)
+            })
+    }
+    return next(action)
+}
+
+
+export const getUserById = ({ dispatch, getState }) => next => action => {
+    if (action.type === 'GET_USER_BY_ID') {
+        debugger
+        let userId = action.payload;
+        return fetch(`http://localhost:8000/user/getById/${userId}`)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("data", data);
+                localStorage.setItem('user-details', JSON.stringify(data.data));
+                dispatch(actions.setUserDetails(data.data))
+            })
+            .catch((err) => {
+                console.log(err);
             })
     }
     return next(action)
@@ -164,7 +207,7 @@ export const removeUserContact = ({ dispatch, getState }) => next => action => {
             headers: {
                 'Content-Type': 'application/json'
             },
-        
+
         })
             .then((response) => response.json())
             .then(() => {

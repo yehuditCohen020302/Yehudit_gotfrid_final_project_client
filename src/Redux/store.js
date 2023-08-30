@@ -3,7 +3,7 @@ import usersReducer from './reducers/users'
 import diaryReducer from './reducers/diary'
 import {
     createNewUser, loginUser, getAllUsers, deleteUser, sendMessageToUser, getMessagesByUser,
-    contactToManager, getMessagesManager, removeUserContact
+    contactToManager, getMessagesManager, removeUserContact, updateUser, getUserById
 } from './Middleware/users'
 import { getAllFoods, getDiaryByUser, addNewFood } from './Middleware/diary'
 
@@ -14,6 +14,6 @@ const reducer = combineReducers({
 const Store = createStore(reducer, applyMiddleware(
     createNewUser, loginUser, getAllFoods, deleteUser, getDiaryByUser,
     getAllUsers, addNewFood, sendMessageToUser, getMessagesByUser, contactToManager,
-    getMessagesManager, removeUserContact));
+    getMessagesManager, removeUserContact, updateUser, getUserById));
 window.store = Store;
 export default Store;

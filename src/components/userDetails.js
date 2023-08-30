@@ -18,10 +18,13 @@ import logo from '../images/logo-3.png';
 const mapDispatchToProps = (dispatch) => ({
     createNewUser: (user) => dispatch(actions.createNewUser(user)),
     getAllUsers: () => dispatch(actions.getAllUsers()),
+    updateUser: (user) => dispatch(actions.updateUser(user)),
+    getUserById: (id) => dispatch(actions.getUserById(id)),
 })
 
 export default connect(null, mapDispatchToProps)(function UserDetails(props) {
-    const { isManagerPage, createNewUser, getAllUsers } = props;
+    const { isManagerPage, createNewUser, getAllUsers,
+        updateUser, getUserById, setIsUserSaved, isUserSaved, setIsEditMode, setIsUserSavedM } = props;
     const userId = useRef('')
     const firstName = useRef('')
     const lastName = useRef('')
@@ -30,8 +33,8 @@ export default connect(null, mapDispatchToProps)(function UserDetails(props) {
     const height = useRef('')
     const weights = useRef('')
     const password = useRef('')
-    const [isUserSaved, setIsUserSaved] = useState(false);
-    const userDetails = JSON.parse(localStorage.getItem('user-details'));
+    const [userDetails, setUserDetails] = useState(JSON.parse(localStorage.getItem('user-details')))
+
 
     const saveUserDetails = () => {
         const newUser = {
@@ -43,13 +46,28 @@ export default connect(null, mapDispatchToProps)(function UserDetails(props) {
             weights: weights.current.value,
             password: password.current.value
         }
-        createNewUser(newUser).then((res) => {
-            setIsUserSaved(true);
-            setTimeout(async () => {
-                setIsUserSaved(false);
-                await getAllUsers();
-            }, 3000);
-        });
+        if (isManagerPage) {
+            debugger
+            createNewUser(newUser).then((res) => {
+                setIsUserSavedM(true);
+                setTimeout(async () => {
+                    setIsUserSavedM(false);
+                    await getAllUsers();
+                }, 3000);
+            });
+        }
+        else {
+            updateUser(newUser).then(async (res) => {
+                await getUserById(userDetails?._id)
+                setIsUserSaved(true);
+                setTimeout(async () => {
+                    setIsUserSaved(false);
+                    setIsEditMode(false)
+                    setUserDetails(JSON.parse(localStorage.getItem('user-details')));
+                }, 3000);
+            });
+        }
+
     }
     return (
         <div className="user-details-main-div">

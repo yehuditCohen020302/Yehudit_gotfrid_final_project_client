@@ -11,24 +11,16 @@ import MainPage from "./MainPage";
 import { useState } from "react";
 import UserMessages from "./userMessages";
 import ManagerMessagse from "./managerMessagse";
-import { FcManager, FcBusinesswoman, FcBusinessman } from 'react-icons/fc';
-import { AiOutlineLogout, AiOutlineLogin } from 'react-icons/ai';
+
 import { useEffect } from "react";
+import Header from "./Header";
 
 export default function App() {
   const [kindOfUser, setKindOfUser] = useState(JSON.parse(localStorage.getItem('kind-of-user')));
   const currentUser = JSON.parse(localStorage.getItem('user-details'));
   const [navigateToPages, setNavigateToPages] = useState('home')
 
-  const logoutUser = () => {
-    localStorage.clear()
-    setNavigateToPages("home")
-    setKindOfUser(JSON.parse(localStorage.getItem('kind-of-user')))
-  }
 
-  const loginUser = () => {
-    setNavigateToPages('login')
-  }
 
   const viewTabs = () => {
     return (
@@ -71,7 +63,7 @@ export default function App() {
           {navigateToPages === "manager-page" && <BasicTable />}
           {navigateToPages === "manager-messages" && <ManagerMessagse />}
           {navigateToPages === "user" && <UserPage />}
-          {navigateToPages === "user-messages" && <UserMessages />}
+          {navigateToPages === "user-messages" && <UserMessages  />}
           {navigateToPages === "login" && <HomePage setNavigateToPages={setNavigateToPages} setKindOfUser={setKindOfUser} />}
         </div>
       </>
@@ -81,16 +73,8 @@ export default function App() {
   return (
     <div>
       <Provider store={Store}>
-        <div className="header-main">
-          <div className="welcome-title">{kindOfUser === 'manager' ? <FcManager style={{ fontSize: '28px' }} /> : kindOfUser === 'simpleUser' ? <FcBusinesswoman style={{ fontSize: '28px' }} /> : <FcBusinessman style={{ fontSize: '28px' }} />}{kindOfUser === 'simpleUser' ? `Welcome ${currentUser?.firstName + ' ' + currentUser?.lastName}` : kindOfUser === 'manager' ? "Welcom Manager" : 'Welcome guest'}</div>
-          {kindOfUser === null ?
-            <button onClick={() => loginUser()} className="btn-login">
-              Login <AiOutlineLogin />
-            </button> :
-            <button className="btn-logout" onClick={() => logoutUser()}>
-              Logout <AiOutlineLogout />
-            </button>}
-        </div>
+        <Header setNavigateToPages={setNavigateToPages}></Header>
+        
         {viewTabs()}
       </Provider>
     </div>

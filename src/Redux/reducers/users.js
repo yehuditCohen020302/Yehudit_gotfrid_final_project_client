@@ -10,6 +10,7 @@ const initialState = {
     phoneNumber: '',
     height: '',
     weights: '',
+    userDetails: JSON.parse(localStorage.getItem('user-details')),
     allUsers: [],
     messagesByCurrentUser:{},
     isMessages: false,
@@ -38,6 +39,9 @@ const usersReducer = {
     },
     setAllContactManager(state, action) {
         state.allContactManager = action.payload;
+    },
+    setUserDetails(state, action) {
+        state.userDetails = action.payload;
     }
 }
 
