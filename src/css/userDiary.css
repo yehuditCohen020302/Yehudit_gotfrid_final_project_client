@@ -44,3 +44,10 @@
     width: 40%;
     margin: 20px;
 }
+.p-t1{
+    font-size:25px ;
+}
+.all-params{
+    width: auto;
+    display: flex;
+}

@@ -9,6 +9,8 @@ import { RiLockPasswordLine } from 'react-icons/ri';
 
 export default function ViewUserDetails() {
     const userDetails = JSON.parse(localStorage.getItem('user-details'));
+    const bmi = (userDetails?.weights)/((userDetails?.height)*(userDetails?.height));
+    const _energy=(userDetails?.weights)*30;
     return (
         <div className="user-details-main-div">
 
@@ -48,6 +50,14 @@ export default function ViewUserDetails() {
                 <div className='item-detail'>
                     <div className='title-detail'><FaWeight /> Weights</div>
                     <span className='item-detail-content'>{userDetails?.weights}</span>
+                </div>
+                <div className='item-detail'>
+                    <div className='title-detail'> BMI</div>
+                    <span className='item-detail-content'>{bmi}</span>
+                </div>
+                <div className='item-detail'>
+                    <div className='title-detail'> מספר קלוריות ליום</div>
+                    <span className='item-detail-content'>{_energy}</span>
                 </div>
             </div>
 

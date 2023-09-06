@@ -76,7 +76,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(function BasicTable(
             <th>#</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Phone Number</th>
+            <th>Email</th>
+            {/* <th>id</th> */}
 
             <th></th>
             <th></th>
@@ -88,7 +89,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(function BasicTable(
               <td>{index + 1}</td>
               <td>{user?.firstName}</td>
               <td>{user?.lastName}</td>
-              <td>{user?.phoneNumber}</td>
+              <td>{user?.email}</td>
+              {/* <td>{user?.password}</td> */}
 
               <td className="delete-user" onClick={() => removeUser(user?._id)}><MdOutlineDeleteForever /></td>
               <td className="show-user" onClick={() => { setShowIndex(index); setShowDetails(true); getDiaryUsers(index) }}><RiPictureInPictureExitLine /></td>
@@ -112,9 +114,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(function BasicTable(
           <p className="p-t"><GiRotaryPhone /> Phone Number:</p>  {allUsers?.[showIndex]?.phoneNumber}<br /><br />
           <p className="p-t"><GiBodyHeight /> Height: </p>{allUsers?.[showIndex]?.height}<br /><br />
           <p className="p-t"><FaWeight /> Weights:</p> {allUsers?.[showIndex]?.weights}<br /><br />
+          <p className='p-t'><FaWeight /> BMI</p><span >{(allUsers?.[showIndex]?.weights)/((allUsers?.[showIndex]?.height)*(allUsers?.[showIndex]?.height))}</span>
+          
           <div className='all-diary-for-m' >
-            {isDiary ? diaryByCurrentUser?.diaryDays?.map((day, i) =>
-              i < 5 &&
+            {isDiary ? diaryByCurrentUser?.diaryDays?.slice(-3).map((day, i )=>
+              i < 3 &&
 
               <div>
                 <div className="title"> {day?.date}</div>
@@ -123,41 +127,42 @@ export default connect(mapStateToProps, mapDispatchToProps)(function BasicTable(
                     {day?.meals?.map((item, index) =>
                       <>
                         <div className="lable">{item?.label}</div>
-                        <div className="all-params">
-                          <p className="p-t1"><p className="b-param"> <b>Energy:</b> </p>  {item?.energy}</p>
-                          <p className="p-t1"><p className="b-param"> <b>Potassium: </b> </p>{item?.ashlegan}</p>
-                          <p className="p-t1"><p className="b-param"> <b>Sodium: </b> </p> {item?.natran}</p>
-                          <p className="p-t1"> <p className="b-param"><b> Total Sugar:</b>  </p>  {item?.total_sugars}</p>
-                        </div >
+                        {/* <div className="all-params">
+                          <p className="p-t1"><p className="b-param"> <b>אנרגיה:</b> </p>  {item?.energy}</p>
+                          <p className="p-t1"><p className="b-param"> <b>אשלגן: </b> </p>{item?.ashlegan}</p>
+                          <p className="p-t1"><p className="b-param"> <b>נתרן: </b> </p> {item?.natran}</p>
+                          <p className="p-t1"> <p className="b-param"><b>סוכר:</b>  </p>  {item?.total_sugars}</p>
+                        </div > */}
                       </>
                     )}
                   </div>
 
                 </div>
-                <div className="lable">Sum :</div>
+                <div className="lable">סך הכל :</div>
                 <div className="all-params">
-                  <p className="p-t1"><p className="b-param"> Energy: </p>
+                  <p ><p className="b-param"> אנרגיה: </p>
                     {a = day?.meals?.reduce(function (prev, current) {
                       return prev + +current.energy
                     }, 0)}
                   </p>
-                    <p className="p-t1"><p className="b-param"> Potassium: </p>
+                    <p ><p className="b-param"> אשלגן: </p>
                     {a = day?.meals?.reduce(function (prev, current) {
                       return prev + +current.ashlegan
                     }, 0)}
                   </p>
                   
-                    <p className="p-t1"><p className="b-param"> Sodium: </p>
+                    <p ><p className="b-param"> נתרן: </p>
                     {a = day?.meals?.reduce(function (prev, current) {
                       return prev + +current.natran
                     }, 0)}
                   </p>
-                  <p className="p-t1"> <p className="b-param">Total Sugar: </p>
+                  <p > <p className="b-param">סוכר: </p>
                     {a = day?.meals?.reduce(function (prev, current) {
                       return prev + +current.total_sugars
                     }, 0).toFixed(2)}
                   </p>
-                </div >
+                </div>
+                <br/><hr/>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                   <GiFruitBowl className="icons-f" />
                   <GiFruitBowl className="icons-f" />
@@ -177,7 +182,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(function BasicTable(
           </div>}
           {showContactMessage && <div className="message-send">The message has been sent !</div>}
         </Modal.Body>
-      </Modal >
+      </Modal>
     </>
   );
 })

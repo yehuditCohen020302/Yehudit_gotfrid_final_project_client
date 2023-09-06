@@ -37,6 +37,7 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(function DenseTable(props) {
   const { getDiaryByUser, diaryByCurrentUser } = props;
   const currentUser = JSON.parse(localStorage.getItem('user-details'))
+  
   const [todayDiary, setTodayDiary] = useState([])
   const [showAddFood, setShowAddFood] = useState(false);
   const [showLastDiary, setShowLastDiary] = useState(false);
@@ -84,35 +85,35 @@ export default connect(mapStateToProps, mapDispatchToProps)(function DenseTable(
                         <Accordion.Item eventKey={index}>
                           <Accordion.Header>{item?.label}</Accordion.Header>
                           <Accordion.Body>
-                            Energy:   {item?.energy}<br />
-                            Ashlegan: {item?.ashlegan}<br />
-                            Natran: {item?.natran}<br />
-                            Total Sugar:  {item?.total_sugars}
+                            אנרגיה:   {item?.energy}<br />
+                            אשלגן: {item?.ashlegan}<br />
+                            נתרן: {item?.natran}<br />
+                             סוכר:  {item?.total_sugars}
                           </Accordion.Body>
                         </Accordion.Item>
                       )}
                     </Accordion>
 
                   </Card.Text>
-                  <div className="lable">Sum :</div>
+                  <div className="lable">בסך הכל :</div>
                   <div className="all-params">
-                    <p className="p-t1"><p className="b-param"> Energy: </p>
+                    <p className="p-t1"><p className="b-param"> אנרגיה: </p>
                       {a = day?.meals?.reduce(function (prev, current) {
                         return prev + +current.energy
                       }, 0)}
                     </p>
-                    <p className="p-t1"><p className="b-param"> Potassium: </p>
+                    <p className="p-t1"><p className="b-param"> אשלגן: </p>
                       {a = day?.meals?.reduce(function (prev, current) {
                         return prev + +current.ashlegan
                       }, 0).toFixed(2) }
                     </p>
 
-                    <p className="p-t1"><p className="b-param"> Sodium: </p>
+                    <p className="p-t1"><p className="b-param"> נתרן: </p>
                       {a = day?.meals?.reduce(function (prev, current) {
                         return prev + +current.natran
                       }, 0)}
                     </p>
-                    <p className="p-t1"> <p className="b-param">Total Sugar: </p>
+                    <p className="p-t1"> <p className="b-param"> סוכר: </p>
                       {a = day?.meals?.reduce(function (prev, current) {
                         return prev + +current.total_sugars
                       }, 0).toFixed(2)}
@@ -147,16 +148,41 @@ export default connect(mapStateToProps, mapDispatchToProps)(function DenseTable(
                     <Accordion.Item eventKey={index}>
                       <Accordion.Header>{item?.label}</Accordion.Header>
                       <Accordion.Body>
-                        <b>Energy:</b>   {item?.energy}<br />
-                        <b>Potassium: </b> {item?.ashlegan}<br />
-                        <b>Sodium: </b> {item?.natran}<br />
-                        <b> Total Sugar:</b> {item?.total_sugars}
+                        <b>אנרגיה:</b>   {item?.energy}<br />
+                        <b>אשלגן: </b> {item?.ashlegan}<br />
+                        <b>נתרן: </b> {item?.natran}<br />
+                        <b> סוכר:</b> {item?.total_sugars}
                       </Accordion.Body>
                     </Accordion.Item>
                   )}
                 </Accordion>
 
               </Card.Text>
+              <div className="lable">בסך הכל :</div>
+                  <div className="all-params">
+                    <p ><p className="b-param"> אנרגיה: </p>
+                    {todayDiary?.[0]?.meals?.reduce(function(prev, current) 
+                     { return prev + +current.energy
+                      }, 0)}
+                    </p>
+                    <p ><p className="b-param"> אשלגן: </p>
+                    {todayDiary?.[0]?.meals?.reduce(function(prev, current){
+                        return prev + +current.ashlegan
+                      }, 0).toFixed(2) }
+                    </p>
+
+                    <p ><p className="b-param"> נתרן: </p>
+                    {todayDiary?.[0]?.meals?.reduce(function(prev, current){
+                        return prev + +current.natran
+                      }, 0)}
+                    </p>
+                    <p > <p className="b-param"> סוכר: </p>
+                    {todayDiary?.[0]?.meals?.reduce(function(prev, current){
+                        return prev + +current.total_sugars
+                      }, 0).toFixed(2)}
+                    </p>
+                  </div>
+<br/><br/>
               <div className='option-btn'>
                 <Button className='btn-opt' variant="primary" onClick={() => setShowAddFood(true)}>Add More Food</Button>
                 <Button className='btn-opt' variant="primary" onClick={() => setShowLastDiary(true)}>Show Last Week Diary</Button>
